@@ -1174,6 +1174,7 @@ class PosOrderLine(models.Model):
     product_id = fields.Many2one('product.product', string='Product', domain=[('sale_ok', '=', True)], required=True, change_default=True)
     price_unit = fields.Float(string='Unit Price', digits=0)
     qty = fields.Float('Quantity', digits='Product Unit of Measure', default=1)
+    pricelist_item_id = fields.Many2one('product.pricelist.item')
     price_subtotal = fields.Float(string='Subtotal w/o Tax', digits=0,
         readonly=True, required=True)
     price_subtotal_incl = fields.Float(string='Subtotal', digits=0,
@@ -1316,6 +1317,7 @@ class PosOrderLine(models.Model):
             'price_extra': orderline.price_extra,
             'refunded_orderline_id': orderline.refunded_orderline_id,
             'full_product_name': orderline.full_product_name,
+            'pricelist_item_id': orderline.pricelist_item_id,
         }
 
     def export_for_ui(self):
