@@ -1708,6 +1708,7 @@ class Orderline extends PosModel {
         this.set_description(json.description);
         this.set_price_extra(json.price_extra);
         this.set_full_product_name(json.full_product_name);
+        this.set_pricelist_item(json.pricelist_item_id);
         this.id = json.id ? json.id : orderline_id++;
         orderline_id = Math.max(this.id+1,orderline_id);
         var pack_lot_lines = json.pack_lot_ids;
@@ -2021,6 +2022,7 @@ class Orderline extends PosModel {
             refunded_orderline_id: this.refunded_orderline_id,
             price_manually_set: this.price_manually_set,
             price_automatically_set: this.price_automatically_set,
+            pricelist_item_id: this.get_pricelist_item() ? this.get_pricelist_item().id : false,
         };
     }
     //used to create a json of the ticket, to be sent to the printer
